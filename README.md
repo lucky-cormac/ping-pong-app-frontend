@@ -2,7 +2,8 @@ This repo is ping-pong-app frontend.
 
 ## Run the application
 
-In the project directory, run the following command:
+In the project directory, rename `.env.example` to `.env` and make updates if needed.
+Then run the following command:
 
 ### `yarn start`
 
