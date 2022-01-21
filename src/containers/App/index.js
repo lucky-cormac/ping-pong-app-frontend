@@ -1,6 +1,5 @@
 import React, { useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { withRouter } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import AppBar from 'components/AppBar';
@@ -34,4 +33,4 @@ const App = () => {
   );
 };
 
-export default withRouter(App);
+export default App;

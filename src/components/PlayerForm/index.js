@@ -5,7 +5,6 @@ import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardContent from '@mui/material/CardContent';
-import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Spinner from 'components/Spinner';
@@ -13,7 +12,7 @@ import { FORM_MODE, PLAYER_SCHEMA } from './constants';
 
 export * from './constants';
 
-const PlayerForm = ({ mode, classes, title, player, onSubmit }) => {
+const PlayerForm = ({ mode, title, player, onSubmit }) => {
   const { loading: submitting, data } = player;
   const formInitialValues = {
     firstName: '',
@@ -24,9 +23,9 @@ const PlayerForm = ({ mode, classes, title, player, onSubmit }) => {
 
   return (
     <Box>
-      <Card className={classes.card}>
-        <CardHeader className={classes.cardHeader} title={title} />
-        <CardContent className={classes.cardContent}>
+      <Card>
+        <CardHeader title={title} />
+        <CardContent>
           <Formik
             initialValues={formInitialValues}
             validationSchema={PLAYER_SCHEMA}
@@ -38,7 +37,7 @@ const PlayerForm = ({ mode, classes, title, player, onSubmit }) => {
               }
             }}
           >
-            {({ values, setFieldValue }) => (
+            {() => (
               <Form>
                 <Field name="firstName">
                   {({ field }) => (

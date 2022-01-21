@@ -1,10 +1,28 @@
 import PropTypes from 'prop-types';
-import { Routes as RRRoutes, Route, Navigate } from 'react-router-dom';
-import ControlledRoute from './ControlledRoute';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import ROUTES from './routes-config';
 
-const Routes = ({ isAuthenticated }) => (
-  <RRRoutes>
+const getControlledRoute = ({
+  mode,
+  component: Component,
+  shouldLoad,
+  redirectTo,
+  ...rest // exact, path
+}) => {
+  let routeElement = null;
+  if (shouldLoad) {
+    const componentProps = {
+      ...(mode ? { mode } : {}),
+    };
+    routeElement = <Component {...componentProps} />;
+  } else {
+    routeElement = <Navigate replace to={redirectTo} />;
+  }
+  return <Route key={rest.path} {...rest} element={routeElement} />;
+};
+
+const RoutesWrapper = ({ isAuthenticated }) => (
+  <Routes>
     {ROUTES.map(
       ({
         controlled,
@@ -14,17 +32,13 @@ const Routes = ({ isAuthenticated }) => (
         ...rest
       }) => {
         if (controlled) {
-          return (
-            <ControlledRoute
-              key={rest.path}
-              shouldLoad={
-                (shouldNotBeAuthenticated && !isAuthenticated) ||
-                (shouldBeAuthenticated && isAuthenticated)
-              }
-              component={component}
-              {...rest}
-            />
-          );
+          return getControlledRoute({
+            component,
+            shouldLoad:
+              (shouldNotBeAuthenticated && !isAuthenticated) ||
+              (shouldBeAuthenticated && isAuthenticated),
+            ...rest,
+          });
         }
 
         if (rest.redirectTo) {
@@ -41,11 +55,11 @@ const Routes = ({ isAuthenticated }) => (
         return <Route key="not-found" {...rest} element={<Component />} />;
       },
     )}
-  </RRRoutes>
+  </Routes>
 );
 
-Routes.propTypes = {
+RoutesWrapper.propTypes = {
   isAuthenticated: PropTypes.bool.isRequired,
 };
 
-export default Routes;
+export default RoutesWrapper;
