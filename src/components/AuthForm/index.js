@@ -56,15 +56,17 @@ const renderFormContent = ({
             )}
           </Field>
           <ErrorMessage name="password" component="div" />
-          <Button
-            type="submit"
-            variant="contained"
-            color="primary"
-            disabled={submitting}
-          >
-            {submitting && <Spinner />}
-            {!submitting && <span>{submitLabel}</span>}
-          </Button>
+          <Box my={2}>
+            <Button
+              type="submit"
+              variant="contained"
+              color="primary"
+              disabled={submitting}
+            >
+              {submitting && <Spinner />}
+              {!submitting && <span>{submitLabel}</span>}
+            </Button>
+          </Box>
         </Form>
       )}
     </Formik>

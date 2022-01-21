@@ -4,6 +4,8 @@ import { reducer as toastrReducer } from 'react-redux-toastr';
 import appReducer from './containers/App/reducer';
 import playerListReducer from './containers/PlayerList/reducer';
 import playerReducer from './containers/Player/reducer';
+import gameListReducer from './containers/GameList/reducer';
+import gameReducer from './containers/Game/reducer';
 
 export default function createRootReducer(history) {
   return combineReducers({
@@ -12,5 +14,7 @@ export default function createRootReducer(history) {
     global: appReducer,
     playerList: playerListReducer,
     player: playerReducer,
+    gameList: gameListReducer,
+    game: gameReducer,
   });
 }

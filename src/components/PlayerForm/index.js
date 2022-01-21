@@ -75,15 +75,17 @@ const PlayerForm = ({ mode, title, player, onSubmit }) => {
                   )}
                 </Field>
                 <ErrorMessage name="age" component="div" />
-                <Button
-                  type="submit"
-                  variant="contained"
-                  color="primary"
-                  disabled={submitting}
-                >
-                  {submitting && <Spinner />}
-                  {!submitting && <span>Save</span>}
-                </Button>
+                <Box my={2}>
+                  <Button
+                    type="submit"
+                    variant="contained"
+                    color="primary"
+                    disabled={submitting}
+                  >
+                    {submitting && <Spinner />}
+                    {!submitting && <span>Save</span>}
+                  </Button>
+                </Box>
               </Form>
             )}
           </Formik>
