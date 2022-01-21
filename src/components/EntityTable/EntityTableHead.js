@@ -8,6 +8,7 @@ import Checkbox from '@mui/material/Checkbox';
 import Tooltip from '@mui/material/Tooltip';
 
 const EntityTableHead = ({
+  sortable,
   columns,
   showAction,
   numSelected,
@@ -39,19 +40,23 @@ const EntityTableHead = ({
             padding={column.disablePadding ? 'none' : 'normal'}
             sortDirection={orderBy === column.id ? order : false}
           >
-            <Tooltip
-              title="Sort"
-              placement={column.numeric ? 'bottom-end' : 'bottom-start'}
-              enterDelay={300}
-            >
-              <TableSortLabel
-                active={orderBy === column.id}
-                direction={order}
-                onClick={createSortHandler(column.id)}
+            {sortable ? (
+              <Tooltip
+                title="Sort"
+                placement={column.numeric ? 'bottom-end' : 'bottom-start'}
+                enterDelay={300}
               >
-                {column.label}
-              </TableSortLabel>
-            </Tooltip>
+                <TableSortLabel
+                  active={orderBy === column.id}
+                  direction={order}
+                  onClick={createSortHandler(column.id)}
+                >
+                  {column.label}
+                </TableSortLabel>
+              </Tooltip>
+            ) : (
+              <>{column.label}</>
+            )}
           </TableCell>
         ))}
         <TableCell padding="normal" />
@@ -61,6 +66,7 @@ const EntityTableHead = ({
 };
 
 EntityTableHead.propTypes = {
+  sortable: PropTypes.bool,
   columns: PropTypes.array.isRequired,
   showAction: PropTypes.bool,
   numSelected: PropTypes.number.isRequired,

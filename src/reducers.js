@@ -6,6 +6,7 @@ import playerListReducer from './containers/PlayerList/reducer';
 import playerReducer from './containers/Player/reducer';
 import gameListReducer from './containers/GameList/reducer';
 import gameReducer from './containers/Game/reducer';
+import rankListReducer from './containers/RankList/reducer';
 
 export default function createRootReducer(history) {
   return combineReducers({
@@ -16,5 +17,6 @@ export default function createRootReducer(history) {
     player: playerReducer,
     gameList: gameListReducer,
     game: gameReducer,
+    rankList: rankListReducer,
   });
 }

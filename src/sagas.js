@@ -5,6 +5,7 @@ import playerListMainSaga from './containers/PlayerList/saga';
 import playerMainSaga from './containers/Player/saga';
 import gameListMainSaga from './containers/GameList/saga';
 import gameMainSaga from './containers/Game/saga';
+import rankListMainSaga from './containers/RankList/saga';
 
 export default function* rootSaga() {
   yield all([
@@ -14,5 +15,6 @@ export default function* rootSaga() {
     playerMainSaga(),
     gameListMainSaga(),
     gameMainSaga(),
+    rankListMainSaga(),
   ]);
 }

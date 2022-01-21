@@ -32,6 +32,7 @@ const PlayerList = () => {
       {error && <Alert severity="error">{error.message}</Alert>}
       <EntityTable
         entityType={ENTITY_TYPES.PLAYER}
+        sortable
         columns={columns}
         showAction
         dataSource={dataSource}

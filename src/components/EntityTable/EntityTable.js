@@ -12,7 +12,6 @@ import Box from '@mui/material/Box';
 import Checkbox from '@mui/material/Checkbox';
 import IconButton from '@mui/material/IconButton';
 import EditIcon from '@mui/icons-material/Edit';
-import VisibilityIcon from '@mui/icons-material/Visibility';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EntityTableToolbar from './EntityTableToolbar';
 import EntityTableHead from './EntityTableHead';
@@ -37,6 +36,7 @@ function usePrevious(value) {
 
 const EntityTable = ({
   entityType,
+  sortable,
   columns,
   showAction,
   dataSource,
@@ -128,6 +128,7 @@ const EntityTable = ({
             aria-labelledby="tableTitle"
           >
             <EntityTableHead
+              sortable={sortable}
               columns={columns}
               showAction={showAction}
               numSelected={selected.length}
@@ -174,29 +175,22 @@ const EntityTable = ({
                     ))}
                     <TableCell padding="normal" align="right">
                       {!row.isDeleteDisabled && showAction && (
-                        <Link to={getEditEntityRoute(entityType, row._id)}>
-                          <IconButton aria-label="Edit">
-                            <EditIcon />
+                        <>
+                          <Link to={getEditEntityRoute(entityType, row._id)}>
+                            <IconButton aria-label="Edit">
+                              <EditIcon />
+                            </IconButton>
+                          </Link>
+                          <IconButton
+                            aria-label="Delete"
+                            onClick={() => {
+                              deleteSelectedEntity({ _id: row._id });
+                              setSelected([]);
+                            }}
+                          >
+                            <DeleteIcon />
                           </IconButton>
-                        </Link>
-                      )}
-                      {!showAction && (
-                        <Link to={getEditEntityRoute(entityType, row._id)}>
-                          <IconButton aria-label="Edit">
-                            <VisibilityIcon />
-                          </IconButton>
-                        </Link>
-                      )}
-                      {!row.isDeleteDisabled && showAction && (
-                        <IconButton
-                          aria-label="Delete"
-                          onClick={() => {
-                            deleteSelectedEntity({ _id: row._id });
-                            setSelected([]);
-                          }}
-                        >
-                          <DeleteIcon />
-                        </IconButton>
+                        </>
                       )}
                     </TableCell>
                   </TableRow>
@@ -227,6 +221,7 @@ const EntityTable = ({
 
 EntityTable.propTypes = {
   entityType: PropTypes.string.isRequired,
+  sortable: PropTypes.bool,
   columns: PropTypes.array.isRequired,
   showAction: PropTypes.bool,
   dataSource: PropTypes.array,

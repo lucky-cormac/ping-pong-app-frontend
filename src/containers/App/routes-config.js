@@ -6,6 +6,7 @@ import PlayerList from 'containers/PlayerList';
 import Player from 'containers/Player';
 import GameList from 'containers/GameList';
 import Game from 'containers/Game';
+import RankList from 'containers/RankList';
 import NotFound from 'containers/NotFound';
 
 export default [
@@ -76,6 +77,14 @@ export default [
     mode: GAME_FORM_MODE.EDIT,
     redirectTo: '/login',
     component: Game,
+    shouldBeAuthenticated: true,
+  },
+  {
+    controlled: true,
+    exact: true,
+    path: '/ranks',
+    redirectTo: '/login',
+    component: RankList,
     shouldBeAuthenticated: true,
   },
   {
