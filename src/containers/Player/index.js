@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -11,8 +11,9 @@ import Spinner from 'components/Spinner';
 import { FORM_TITLE_MAP } from './constants';
 import { fetchPlayer, createPlayer, updatePlayer } from './actions';
 
-const Player = ({ mode, match }) => {
+const Player = ({ mode }) => {
   const dispatch = useDispatch();
+  const params = useParams();
   const player = useSelector((state) => state.player.player);
   const fetchSelectedPlayer = useCallback(
     (payload) => dispatch(fetchPlayer(payload)),
@@ -29,7 +30,7 @@ const Player = ({ mode, match }) => {
 
   useEffect(() => {
     if (mode === FORM_MODE.EDIT) {
-      fetchSelectedPlayer({ _id: match.params.id });
+      fetchSelectedPlayer({ _id: params.id });
     }
   }, []); // eslint-disable-line
 
@@ -48,21 +49,23 @@ const Player = ({ mode, match }) => {
   } else {
     content = (
       <>
-        <Link to="/players" style={{ textDecoration: 'none' }}>
+        <Box component={Link} to="/players" sx={{ textDecoration: 'none' }}>
           <Typography component="span" variant="subtitle1">
             &lt; Back
           </Typography>
-        </Link>
-        <Grid container spacing={2}>
-          <Grid item xs={12}>
-            <PlayerForm
-              title={formTitle}
-              mode={mode}
-              player={player}
-              onSubmit={onSubmit}
-            />
+        </Box>
+        <Box mt={2}>
+          <Grid container spacing={2}>
+            <Grid item xs={12}>
+              <PlayerForm
+                title={formTitle}
+                mode={mode}
+                player={player}
+                onSubmit={onSubmit}
+              />
+            </Grid>
           </Grid>
-        </Grid>
+        </Box>
       </>
     );
   }
@@ -76,7 +79,6 @@ const Player = ({ mode, match }) => {
 
 Player.propTypes = {
   mode: PropTypes.string.isRequired,
-  match: PropTypes.object.isRequired,
 };
 
 export default Player;

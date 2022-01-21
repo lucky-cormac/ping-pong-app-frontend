@@ -93,8 +93,8 @@ const EntityTable = ({
 
     setSelected(newSelected);
   };
-  const handleChangePage = (event, page) => setPage(page); // eslint-disable-line
-  const handleChangeRowsPerPage = (event) => setRowsPerPage(event.target.value);
+  const handlePageChange = (event, page) => setPage(page); // eslint-disable-line
+  const handleRowsPerPageChange = (event) => setRowsPerPage(event.target.value);
   const isSelected = (_id) => selected.includes(_id);
 
   useEffect(() => {
@@ -160,7 +160,7 @@ const EntityTable = ({
                     )}
                     {columns.map((column) => (
                       <TableCell
-                        padding={column.disablePadding ? 'none' : 'default'}
+                        padding={column.disablePadding ? 'none' : 'normal'}
                         key={column.id}
                         align={cellAlignment(column.numeric)}
                       >
@@ -172,7 +172,7 @@ const EntityTable = ({
                         </Link>
                       </TableCell>
                     ))}
-                    <TableCell padding="default">
+                    <TableCell padding="normal" align="right">
                       {!row.isDeleteDisabled && showAction && (
                         <Link to={getEditEntityRoute(entityType, row._id)}>
                           <IconButton aria-label="Edit">
@@ -218,8 +218,8 @@ const EntityTable = ({
         nextIconButtonProps={{
           'aria-label': 'Next Page',
         }}
-        onChangePage={handleChangePage}
-        onChangeRowsPerPage={handleChangeRowsPerPage}
+        onPageChange={handlePageChange}
+        onRowsPerPageChange={handleRowsPerPageChange}
       />
     </Box>
   );

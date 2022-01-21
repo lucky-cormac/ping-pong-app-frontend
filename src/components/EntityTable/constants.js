@@ -28,5 +28,5 @@ export const ENTITY_TABLE_DELETE_LABEL_MAP = {
 
 export const INITIAL_ORDER = 'asc';
 export const INITIAL_PAGE = 0;
-export const INITIAL_ROWS_PER_PAGE = 10;
+export const INITIAL_ROWS_PER_PAGE = 5;
 export const ROWS_PER_PAGE_OPTIONS = [5, 10, 25];

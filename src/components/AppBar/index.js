@@ -47,7 +47,7 @@ const TopAppBar = ({ isAuthenticated, currentUserData, logout }) => {
       </Box>
     ));
     const accountMenuItems = [
-      <>
+      <Box key="account-menu-item">
         <Box
           component={Button}
           aria-owns={anchorEl ? 'account-menu-items' : undefined}
@@ -67,7 +67,7 @@ const TopAppBar = ({ isAuthenticated, currentUserData, logout }) => {
         >
           <MenuItem onClick={logoutUser}>Logout</MenuItem>
         </Menu>
-      </>,
+      </Box>,
     ];
 
     return { mainMenuItems, accountMenuItems };

@@ -36,7 +36,7 @@ const EntityTableHead = ({
           <TableCell
             key={column.id}
             align={column.numeric ? 'right' : 'left'}
-            padding={column.disablePadding ? 'none' : 'default'}
+            padding={column.disablePadding ? 'none' : 'normal'}
             sortDirection={orderBy === column.id ? order : false}
           >
             <Tooltip
@@ -54,7 +54,7 @@ const EntityTableHead = ({
             </Tooltip>
           </TableCell>
         ))}
-        <TableCell padding="default" />
+        <TableCell padding="normal" />
       </TableRow>
     </TableHead>
   );
