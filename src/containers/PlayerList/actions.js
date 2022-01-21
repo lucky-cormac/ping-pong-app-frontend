@@ -1,3 +1,4 @@
+import { toastr } from 'react-redux-toastr';
 import {
   FETCH_PLAYERS,
   FETCH_PLAYERS_SUCCESS,
@@ -28,7 +29,7 @@ export function fetchPlayersSucceeded(payload) {
 }
 
 export function fetchPlayersFailed(error) {
-  console.error('Fetch Players: ' + error.message);
+  toastr.error('Fetch Players', error.message);
 
   return {
     type: FETCH_PLAYERS_ERROR,
@@ -47,7 +48,7 @@ export function deletePlayer(payload) {
 }
 
 export function deletePlayerSucceeded(payload) {
-  console.log('Delete Player: Player deleted successfully.');
+  toastr.success('Delete Player', 'Player deleted successfully.');
 
   return {
     type: DELETE_PLAYER_SUCCESS,
@@ -56,7 +57,7 @@ export function deletePlayerSucceeded(payload) {
 }
 
 export function deletePlayerFailed(error) {
-  console.error('Delete Player: ' + error.message);
+  toastr.error('Delete Player', error.message);
 
   return {
     type: DELETE_PLAYER_ERROR,
@@ -75,7 +76,7 @@ export function deletePlayers(payload) {
 }
 
 export function deletePlayersSucceeded(payload) {
-  console.log('Delete Players: Player(s) deleted successfully.');
+  toastr.success('Delete Players', 'Player(s) deleted successfully.');
 
   return {
     type: DELETE_PLAYERS_SUCCESS,
@@ -84,7 +85,7 @@ export function deletePlayersSucceeded(payload) {
 }
 
 export function deletePlayersFailed(error) {
-  console.error('Delete Players: ' + error.message);
+  toastr.error('Delete Players', error.message);
 
   return {
     type: DELETE_PLAYERS_ERROR,

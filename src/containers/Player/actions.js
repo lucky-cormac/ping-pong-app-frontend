@@ -1,3 +1,4 @@
+import { toastr } from 'react-redux-toastr';
 import {
   FETCH_PLAYER,
   FETCH_PLAYER_SUCCESS,
@@ -28,7 +29,7 @@ export function fetchPlayerSucceeded(payload) {
 }
 
 export function fetchPlayerFailed(error) {
-  console.error('Fetch Player: ' + error.message);
+  toastr.error('Fetch Player', error.message);
 
   return {
     type: FETCH_PLAYER_ERROR,
@@ -47,7 +48,7 @@ export function createPlayer(payload) {
 }
 
 export function createPlayerSucceeded(payload) {
-  console.log('Create Player: Player created successfully.');
+  toastr.success('Create Player', 'Player created successfully.');
 
   return {
     type: CREATE_PLAYER_SUCCESS,
@@ -56,7 +57,7 @@ export function createPlayerSucceeded(payload) {
 }
 
 export function createPlayerFailed(error) {
-  console.error('Create Player: ' + error.message);
+  toastr.error('Create Player', error.message);
 
   return {
     type: CREATE_PLAYER_ERROR,
@@ -75,7 +76,7 @@ export function updatePlayer(payload) {
 }
 
 export function updatePlayerSucceeded(payload) {
-  console.log('Update Player: Player updated successfully.');
+  toastr.success('Update Player', 'Player updated successfully.');
 
   return {
     type: UPDATE_PLAYER_SUCCESS,
@@ -84,7 +85,7 @@ export function updatePlayerSucceeded(payload) {
 }
 
 export function updatePlayerFailed(error) {
-  console.error('Update Player: ' + error.message);
+  toastr.error('Update Player', error.message);
 
   return {
     type: UPDATE_PLAYER_ERROR,

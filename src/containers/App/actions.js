@@ -1,3 +1,4 @@
+import { toastr } from 'react-redux-toastr';
 import {
   REGISTER,
   REGISTER_SUCCESS,
@@ -20,7 +21,7 @@ export function register(payload) {
 }
 
 export function registerSucceeded(payload) {
-  console.log('Register: User registered successfully.');
+  toastr.success('Register', 'User registered successfully.');
 
   return {
     type: REGISTER_SUCCESS,
@@ -29,7 +30,7 @@ export function registerSucceeded(payload) {
 }
 
 export function registerFailed(error) {
-  console.error('Register: ' + error.message);
+  toastr.error('Register', error.message);
 
   return {
     type: REGISTER_ERROR,
@@ -55,7 +56,7 @@ export function loginSucceeded(payload) {
 }
 
 export function loginFailed(error) {
-  console.error('Login: ' + error.message);
+  toastr.error('Login', error.message);
 
   return {
     type: LOGIN_ERROR,
