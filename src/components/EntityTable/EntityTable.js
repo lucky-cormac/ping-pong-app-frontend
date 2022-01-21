@@ -25,6 +25,8 @@ import {
 import { cellAlignment, getEditEntityRoute } from './helpers';
 import { tableStyles } from './styles';
 
+export * from './constants';
+
 function usePrevious(value) {
   const ref = useRef();
   useEffect(() => {
